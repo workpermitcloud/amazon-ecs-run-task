@@ -10,6 +10,7 @@ const IGNORED_TASK_DEFINITION_ATTRIBUTES = [
   'taskDefinitionArn',
   'requiresAttributes',
   'revision',
+  'runtimePlatform',
   'status'
 ];
 
