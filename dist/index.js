@@ -95,7 +95,6 @@ async function run() {
     const taskDefinitionFile = core.getInput('task-definition', { required: true });
     const cluster = core.getInput('cluster', { required: false });
     const count = core.getInput('count', { required: true });
-    const networkConfiguration = core.getInput('networkConfiguration', { required: true });
     const startedBy = core.getInput('started-by', { required: false }) || agent;
     const waitForFinish = core.getInput('wait-for-finish', { required: false }) || false;
     let waitForMinutes = parseInt(core.getInput('wait-for-minutes', { required: false })) || 30;
@@ -129,7 +128,6 @@ async function run() {
       cluster: clusterName,
       taskDefinition: taskDefArn,
       count: count,
-      networkConfiguration: networkConfiguration,
       startedBy: startedBy
     })}`)
 
@@ -137,7 +135,6 @@ async function run() {
       cluster: clusterName,
       taskDefinition: taskDefArn,
       count: parseInt(count),
-      networkConfiguration: networkConfiguration,
       startedBy: startedBy
     });
 
