@@ -88,6 +88,7 @@ async function run() {
     // Get inputs
     const taskDefinitionFile = core.getInput('task-definition', { required: true });
     const networkConfigurationFile = core.getInput('network-configuration', { required: true });
+    const launchType = core.getInput('launch-type', { required: true });
     const cluster = core.getInput('cluster', { required: false });
     const count = core.getInput('count', { required: true });
     const startedBy = core.getInput('started-by', { required: false }) || agent;
@@ -131,6 +132,7 @@ async function run() {
       cluster: clusterName,
       taskDefinition: taskDefArn,
       networkConfiguration: networkConfigurationFileContents,
+      launchType: launchType,
       count: count,
       startedBy: startedBy
     })}`)
@@ -139,6 +141,7 @@ async function run() {
       cluster: clusterName,
       taskDefinition: taskDefArn,
       networkConfiguration: networkConfigurationFileContents,
+      launchType: launchType,
       count: parseInt(count),
       startedBy: startedBy
     });
