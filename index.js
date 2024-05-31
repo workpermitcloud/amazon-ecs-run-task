@@ -87,6 +87,7 @@ async function run() {
 
     // Get inputs
     const taskDefinitionFile = core.getInput('task-definition', { required: true });
+    const networkConfigurationFile = core.getInput('network-configuration', { required: true });
     const cluster = core.getInput('cluster', { required: false });
     const count = core.getInput('count', { required: true });
     const startedBy = core.getInput('started-by', { required: false }) || agent;
@@ -103,6 +104,14 @@ async function run() {
       path.join(process.env.GITHUB_WORKSPACE, taskDefinitionFile);
     const fileContents = fs.readFileSync(taskDefPath, 'utf8');
     const taskDefContents = removeIgnoredAttributes(cleanNullKeys(yaml.parse(fileContents)));
+    // Parse the network configuration
+    core.debug('Parsing network configuration');
+    const networkConfigurationPath = path.isAbsolute(networkConfigurationFile) ?
+    networkConfigurationFile :
+    path.join(process.env.GITHUB_WORKSPACE, networkConfigurationFile);
+    const networkConfigurationFileContents = JSON.parse(fs.readFileSync(networkConfigurationPath, 'utf8'));
+    core.debug("Network configuration contents:");
+    core.debug(JSON.stringify(networkConfigurationFileContents, undefined, 4));
 
     let registerResponse;
     try {
@@ -121,6 +130,7 @@ async function run() {
     core.debug(`Running task with ${JSON.stringify({
       cluster: clusterName,
       taskDefinition: taskDefArn,
+      networkConfiguration: networkConfigurationFileContents,
       count: count,
       startedBy: startedBy
     })}`)
@@ -128,6 +138,7 @@ async function run() {
     const runTaskResponse = await ecs.runTask({
       cluster: clusterName,
       taskDefinition: taskDefArn,
+      networkConfiguration: networkConfigurationFileContents,
       count: parseInt(count),
       startedBy: startedBy
     });
