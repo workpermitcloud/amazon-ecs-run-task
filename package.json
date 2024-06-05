@@ -1,6 +1,6 @@
 {
   "name": "aws-actions-amazon-ecs-deploy-task-definition",
-  "version": "1.3.5",
+  "version": "1.0.0",
   "description": "Registers an Amazon ECS task definition and deploys it to an ECS service.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aws-actions/amazon-ecs-deploy-task-definition.git"
+    "url": "git+https://github.com/workpermitcloud/amazon-ecs-run-task.git"
   },
   "keywords": [
     "AWS",
@@ -21,13 +21,12 @@
   "author": "AWS",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aws-actions/amazon-ecs-deploy-task-definition/issues"
+    "url": "https://github.com/workpermitcloud/amazon-ecs-run-task.git/issues"
   },
-  "homepage": "https://github.com/aws-actions/amazon-ecs-deploy-task-definition#readme",
+  "homepage": "https://github.com/workpermitcloud/amazon-ecs-run-task.git#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@aws-sdk/client-ecs": "^3.587.0",
-    "yaml": "^1.10.0"
+    "@aws-sdk/client-ecs": "^3.590.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.38.1",

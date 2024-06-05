@@ -4,8 +4,8 @@ branding:
   icon: 'cloud'
   color: 'orange'
 inputs:
-  task-definition:
-    description: 'The name of ECS task definition'
+  task-definition-arn:
+    description: 'The ARN of ECS task definition'
     required: true
   cluster:
     description: "The name of the ECS cluster. Will default to the 'default' cluster"
@@ -23,8 +23,6 @@ inputs:
     description: 'How long to wait for the task reach stopped state, in minutes (default: 30 minutes, max: 6 hours).'
     required: false
 outputs:
-  task-definition-arn:
-    description: 'The ARN of the registered ECS task definition'
   task-arn:
     description: 'The ARN of the ECS task'
 runs:
